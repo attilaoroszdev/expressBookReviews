@@ -19,14 +19,14 @@ app.use("/customer/auth/", function auth(req, res, next) {
 
         jwt.verify(token, "access", function (err, user) {
             if (err) {
-                return res.status(403).json({message: "Unauthorized"});
+                return res.status(403).json({message: "Your credentials didn't check out"});
             } else {
                 req.user = user;
                 next();
             }
         });
     } else {
-        return res.status(403).json({message: "Unauthorized"});
+        return res.status(403).json({message: "You need to be logged in"});
     }
 
 });
